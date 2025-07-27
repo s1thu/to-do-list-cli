@@ -8,7 +8,7 @@ This app is built for learning and demonstrating:
 - Modular code structure
 - Unit testing
 - File-based persistence
-- CLI design with Cobra (planned)
+- CLI design with Cobra
 
 ---
 
@@ -28,7 +28,7 @@ This app is built for learning and demonstrating:
 | Component    | Tech                       |
 | ------------ | -------------------------- |
 | Language     | Go 1.21+                   |
-| CLI Parser   | Cobra _(coming soon)_      |
+| CLI Parser   | Cobra                      |
 | File Storage | Local JSON File            |
 | Testing      | Built-in `testing` package |
 | CI/CD        | GitHub Actions (Go CI)     |
