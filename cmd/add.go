@@ -14,22 +14,16 @@ var addCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		taskName := args[0]
 
-		tasks, err := todo.LoadTasks("tasks.json")
+		manager := todo.NewManager()
+		err := manager.LoadFromFile("tasks.json")
 		if err != nil {
-			fmt.Printf("Error loading tasks: %v\n", err)
+			fmt.Println("Error loading tasks:", err)
 			return
 		}
 
-		m := todo.NewManager()
-		for _, t := range tasks {
-			m.AddTask(t.Name)
-			if t.Completed {
-				_ = m.CompletedTask(t.ID)
-			}
-		}
+		task := manager.AddTask(taskName)
 
-		task := m.AddTask(taskName)
-		err = todo.SaveTasks("tasks.json", m.GetTasks())
+		err = todo.SaveTasks("tasks.json", manager.GetTasks())
 		if err != nil {
 			fmt.Println("Error saving tasks:", err)
 			return

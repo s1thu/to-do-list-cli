@@ -11,13 +11,16 @@ var listCmd = &cobra.Command{
 	Use:   "list",
 	Short: "List all tasks in the todo list",
 	Run: func(cmd *cobra.Command, args []string) {
-		tasks, err := todo.LoadTasks("tasks.json")
+		m := todo.NewManager()
+		err := m.LoadFromFile("tasks.json")
 		if err != nil {
-			fmt.Printf("Error loading tasks: %v\n", err)
+			cmd.Printf("Error loading tasks: %v\n", err)
 			return
 		}
 
-		fmt.Println(tasks)
+		for _, t := range m.GetTasks() {
+			fmt.Println(t.String())
+		}
 	},
 }
 

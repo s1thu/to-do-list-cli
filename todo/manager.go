@@ -60,3 +60,23 @@ func (m *Manager) DeleteTask(id int) error {
 	}
 	return ErrTaskNotFound
 }
+
+func (m *Manager) LoadFromFile(filename string) error {
+	tasks, err := LoadTasks(filename)
+	if err != nil {
+		return err
+	}
+	m.tasks = tasks
+
+	// Update nextId based on existing tasks
+	if len(tasks) > 0 {
+		maxId := tasks[0].ID
+		for _, t := range tasks {
+			if t.ID > maxId {
+				maxId = t.ID
+			}
+		}
+		m.nextId = maxId + 1
+	}
+	return nil
+}

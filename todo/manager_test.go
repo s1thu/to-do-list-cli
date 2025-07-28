@@ -83,3 +83,19 @@ func TestDeleteTask(t *testing.T) {
 		t.Errorf("Expected ErrTaskNotFound, got %v", err)
 	}
 }
+
+func TestLoadFromFile(t *testing.T) {
+	manager := NewManager()
+	err := manager.LoadFromFile("test_tasks.json")
+	if err != nil {
+		t.Fatalf("Failed to load tasks from file: %v", err)
+	}
+
+	if len(manager.tasks) == 0 {
+		t.Error("Expected tasks to be loaded, got empty task list")
+	}
+
+	if manager.nextId <= 1 {
+		t.Error("Expected nextId to be greater than 1 after loading tasks")
+	}
+}
