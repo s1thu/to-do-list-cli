@@ -54,6 +54,85 @@ to_do_cli/
 
 ---
 
+## 📖 Installation & Usage
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone git@github.com:s1thu/to-do-list-cli.git
+   cd to-do-list-cli
+   ```
+
+2. **Build the application:**
+   ```bash
+   go build -o todo
+   ```
+
+3. **Run directly with Go:**
+   ```bash
+   go run main.go [command]
+   ```
+
+### Available Commands
+
+#### 🆘 Get Help
+```bash
+# Show all available commands
+todo --help
+
+# Get help for a specific command
+todo [command] --help
+```
+
+#### ➕ Add Tasks
+```bash
+# Add a new task
+todo add "Buy groceries"
+todo add "Complete project documentation"
+todo add "Call dentist for appointment"
+```
+
+#### 📋 List Tasks
+```bash
+# Show all tasks
+todo list
+```
+**Output example:**
+```
+[ ] 1: Buy groceries (Created: 2025-01-15 10:30) (Updated: 2025-01-15 10:30)
+[x] 2: Complete project documentation (Created: 2025-01-15 09:15) (Updated: 2025-01-15 11:20)
+[ ] 3: Call dentist for appointment (Created: 2025-01-15 14:45) (Updated: 2025-01-15 14:45)
+```
+
+#### ✅ Complete Tasks
+```bash
+# Mark task as completed by ID
+todo complete 1
+todo complete 3
+```
+
+#### ❌ Delete Tasks
+```bash
+# Delete task by ID
+todo delete 2
+todo delete 5
+```
+
+### Usage Examples
+
+```bash
+# Basic workflow
+todo add "Learn Go programming"     # Add task
+todo add "Build CLI application"    # Add another task
+todo list                           # View all tasks
+todo complete 1                     # Mark first task as done
+todo delete 2                       # Remove second task
+todo list                           # Check final state
+```
+
+---
+
 ## 🧪 Running Tests
 
 ```bash
